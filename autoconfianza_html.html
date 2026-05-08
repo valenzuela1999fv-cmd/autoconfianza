@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoConfianza — Autos Usados Certificados en Chile</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Arial,sans-serif;color:#1a1a1a;background:#f5f5f2}
+  a{text-decoration:none;color:inherit}
+
+  /* NAV */
+  nav{background:#fff;border-bottom:1px solid #e5e5e5;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100}
+  .logo{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:600;color:#185FA5}
+  .logo i{font-size:24px}
+  .nav-links{display:flex;gap:1.5rem;list-style:none}
+  .nav-links a{font-size:14px;color:#555}
+  .nav-links a:hover{color:#185FA5}
+  .btn-nav{background:#185FA5;color:#fff;border:none;padding:9px 20px;border-radius:8px;font-size:14px;cursor:pointer;font-weight:500}
+  .btn-nav:hover{background:#0C447C}
+
+  /* HERO */
+  .hero{background:linear-gradient(135deg,#042C53 0%,#185FA5 100%);color:#fff;padding:5rem 2rem;text-align:center}
+  .badge-hero{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);padding:6px 18px;border-radius:20px;font-size:13px;margin-bottom:1.5rem}
+  .hero h1{font-size:2.6rem;font-weight:700;margin-bottom:1rem;line-height:1.2}
+  .hero p{font-size:1.1rem;opacity:0.88;max-width:620px;margin:0 auto 2rem;line-height:1.7}
+  .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn-white{background:#fff;color:#185FA5;border:none;padding:13px 30px;border-radius:8px;font-size:15px;cursor:pointer;font-weight:600}
+  .btn-white:hover{background:#f0f0f0}
+  .btn-outline-white{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.6);padding:13px 30px;border-radius:8px;font-size:15px;cursor:pointer}
+  .btn-outline-white:hover{background:rgba(255,255,255,0.1)}
+
+  /* STATS */
+  .stats-bar{background:#fff;border-bottom:1px solid #e5e5e5;padding:1.8rem 2rem;display:flex;justify-content:center;gap:3.5rem;flex-wrap:wrap}
+  .stat{text-align:center}
+  .stat-num{font-size:2rem;font-weight:700;color:#185FA5}
+  .stat-label{font-size:13px;color:#777;margin-top:2px}
+
+  /* SEARCH */
+  .search-wrap{background:#f5f5f2;padding:2rem}
+  .search-inner{max-width:800px;margin:0 auto;text-align:center}
+  .search-inner p{font-size:13px;color:#777;margin-bottom:10px}
+  .search-bar{background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:1rem 1.25rem;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .search-bar select,.search-bar input{border:1px solid #e0e0e0;border-radius:8px;padding:9px 12px;font-size:14px;background:#f9f9f9;color:#1a1a1a;flex:1;min-width:130px}
+  .btn-search{background:#185FA5;color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:14px;cursor:pointer;font-weight:500;white-space:nowrap}
+
+  /* SECTIONS */
+  .section{padding:4rem 2rem;max-width:1100px;margin:0 auto}
+  .section-label{font-size:13px;color:#185FA5;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px}
+  .section-title{font-size:1.8rem;font-weight:700;margin-bottom:8px}
+  .section-sub{color:#666;font-size:15px;margin-bottom:2.5rem;line-height:1.6}
+  .bg-gray{background:#f5f5f2}
+  .bg-white{background:#fff}
+
+  /* CARS */
+  .cars-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
+  .car-card{background:#fff;border:1px solid #e5e5e5;border-radius:14px;overflow:hidden;transition:box-shadow .2s}
+  .car-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+  .car-img{width:100%;height:170px;display:flex;align-items:center;justify-content:center;position:relative}
+  .car-img.blue{background:linear-gradient(135deg,#B5D4F4,#E6F1FB)}
+  .car-img.green{background:linear-gradient(135deg,#C0DD97,#EAF3DE)}
+  .car-img.pink{background:linear-gradient(135deg,#F4C0D1,#FBEAF0)}
+  .car-img i{font-size:60px;opacity:0.4}
+  .car-img.blue i{color:#185FA5}
+  .car-img.green i{color:#3B6D11}
+  .car-img.pink i{color:#993556}
+  .cert-badge{position:absolute;top:10px;right:10px;background:#185FA5;color:#fff;font-size:11px;padding:4px 10px;border-radius:20px;display:flex;align-items:center;gap:4px}
+  .car-body{padding:1.1rem 1.25rem}
+  .car-name{font-size:17px;font-weight:600;margin-bottom:3px}
+  .car-detail{font-size:13px;color:#777;margin-bottom:10px}
+  .car-price{font-size:1.35rem;font-weight:700;color:#185FA5;margin-bottom:10px}
+  .car-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+  .tag{font-size:11px;background:#E6F1FB;color:#0C447C;padding:3px 10px;border-radius:12px;font-weight:500}
+  .btn-car{width:100%;background:#185FA5;color:#fff;border:none;padding:10px;border-radius:8px;font-size:14px;cursor:pointer;font-weight:500}
+  .btn-car:hover{background:#0C447C}
+
+  /* FEATURES */
+  .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+  .feat-card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:1.3rem}
+  .feat-icon{width:46px;height:46px;background:#E6F1FB;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+  .feat-icon i{font-size:23px;color:#185FA5}
+  .feat-card h3{font-size:15px;font-weight:600;margin-bottom:6px}
+  .feat-card p{font-size:13px;color:#666;line-height:1.6}
+
+  /* STEPS */
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+  .step{text-align:center;padding:1.5rem 1rem;background:#fff;border:1px solid #e5e5e5;border-radius:12px}
+  .step-num{width:42px;height:42px;background:#185FA5;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;margin:0 auto 1rem}
+  .step h3{font-size:15px;font-weight:600;margin-bottom:6px}
+  .step p{font-size:13px;color:#666;line-height:1.6}
+
+  /* TESTIMONIALS */
+  .test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+  .test-card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:1.3rem}
+  .stars{color:#EF9F27;font-size:15px;margin-bottom:8px}
+  .test-card p{font-size:14px;color:#555;line-height:1.6;margin-bottom:12px}
+  .t-author{display:flex;align-items:center;gap:10px}
+  .avatar{width:38px;height:38px;border-radius:50%;background:#E6F1FB;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#185FA5}
+  .t-name{font-size:13px;font-weight:600}
+  .t-sub{font-size:12px;color:#888}
+
+  /* CTA */
+  .cta-section{background:linear-gradient(135deg,#042C53,#185FA5);color:#fff;padding:4.5rem 2rem;text-align:center}
+  .cta-section h2{font-size:2rem;font-weight:700;margin-bottom:1rem}
+  .cta-section p{opacity:0.88;margin-bottom:2rem;font-size:15px;max-width:500px;margin-left:auto;margin-right:auto}
+  .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+
+  /* FOOTER */
+  footer{background:#fff;border-top:1px solid #e5e5e5;padding:2.5rem 2rem;text-align:center}
+  .footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap}
+  .footer-links a{color:#666;font-size:13px}
+  .footer-links a:hover{color:#185FA5}
+  footer p{font-size:13px;color:#999;margin-top:4px}
+
+  /* WHATSAPP */
+  .wapp-btn{position:fixed;bottom:24px;right:24px;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:200;border:none;box-shadow:0 4px 12px rgba(37,211,102,0.4)}
+  .wapp-btn i{font-size:28px}
+
+  /* RESPONSIVE */
+  @media(max-width:700px){
+    .nav-links{display:none}
+    .hero h1{font-size:1.8rem}
+    .stats-bar{gap:1.5rem}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo"><i class="ti ti-shield-check"></i> AutoConfianza</div>
+  <ul class="nav-links">
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#">Vehículos</a></li>
+    <li><a href="#">Certificación</a></li>
+    <li><a href="#">Nosotros</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+  <button class="btn-nav"><i class="ti ti-phone"></i> Contáctanos</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge-hero"><i class="ti ti-certificate"></i> Vehículos con 150 puntos de revisión</div>
+  <h1>Compra tu auto usado<br>con total confianza</h1>
+  <p>El único marketplace de autos usados en Chile con certificación técnica independiente, garantía real y transparencia total desde el primer clic.</p>
+  <div class="hero-btns">
+    <button class="btn-white"><i class="ti ti-search"></i> Ver vehículos</button>
+    <button class="btn-outline-white"><i class="ti ti-player-play"></i> ¿Cómo funciona?</button>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">150</div><div class="stat-label">Puntos de revisión por auto</div></div>
+  <div class="stat"><div class="stat-num">3 meses</div><div class="stat-label">Garantía post-compra</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Proceso digital</div></div>
+  <div class="stat"><div class="stat-num">+60%</div><div class="stat-label">Consumidores desconfían del mercado</div></div>
+</div>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <div class="search-inner">
+    <p>Busca tu próximo vehículo certificado</p>
+    <div class="search-bar">
+      <select><option>Todas las marcas</option><option>Toyota</option><option>Chevrolet</option><option>Hyundai</option><option>Kia</option><option>Nissan</option><option>Suzuki</option></select>
+      <select><option>Todos los modelos</option><option>Corolla</option><option>Tucson</option><option>Sportage</option></select>
+      <select><option>Precio máximo</option><option>$5.000.000</option><option>$10.000.000</option><option>$15.000.000</option><option>$20.000.000</option></select>
+      <button class="btn-search"><i class="ti ti-search"></i> Buscar</button>
+    </div>
+  </div>
+</div>
+
+<!-- VEHÍCULOS -->
+<div class="bg-white" style="padding:4rem 0">
+  <div class="section" style="padding:0 2rem">
+    <div class="section-label">Vehículos destacados</div>
+    <div class="section-title">Autos certificados disponibles</div>
+    <div class="section-sub">Todos con informe técnico completo, historial vehicular y garantía incluida</div>
+    <div class="cars-grid">
+      <div class="car-card">
+        <div class="car-img blue"><i class="ti ti-car"></i><span class="cert-badge"><i class="ti ti-shield-check" style="font-size:11px"></i> Certificado</span></div>
+        <div class="car-body">
+          <div class="car-name">Toyota Corolla 2019</div>
+          <div class="car-detail">42.000 km · Automático · Gasolina</div>
+          <div class="car-price">$9.900.000</div>
+          <div class="car-tags"><span class="tag">150 puntos revisados</span><span class="tag">Garantía 3m</span><span class="tag">360°</span></div>
+          <button class="btn-car">Ver detalles</button>
+        </div>
+      </div>
+      <div class="car-card">
+        <div class="car-img green"><i class="ti ti-car"></i><span class="cert-badge"><i class="ti ti-shield-check" style="font-size:11px"></i> Certificado</span></div>
+        <div class="car-body">
+          <div class="car-name">Hyundai Tucson 2020</div>
+          <div class="car-detail">35.000 km · Automático · Gasolina</div>
+          <div class="car-price">$13.500.000</div>
+          <div class="car-tags"><span class="tag">150 puntos revisados</span><span class="tag">Garantía 3m</span><span class="tag">360°</span></div>
+          <button class="btn-car">Ver detalles</button>
+        </div>
+      </div>
+      <div class="car-card">
+        <div class="car-img pink"><i class="ti ti-car"></i><span class="cert-badge"><i class="ti ti-shield-check" style="font-size:11px"></i> Certificado</span></div>
+        <div class="car-body">
+          <div class="car-name">Kia Sportage 2021</div>
+          <div class="car-detail">28.000 km · Automático · Gasolina</div>
+          <div class="car-price">$16.200.000</div>
+          <div class="car-tags"><span class="tag">150 puntos revisados</span><span class="tag">Garantía 3m</span><span class="tag">360°</span></div>
+          <button class="btn-car">Ver detalles</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POR QUÉ ELEGIRNOS -->
+<div class="bg-gray" style="padding:4rem 0">
+  <div class="section" style="padding:0 2rem">
+    <div class="section-label">Nuestra propuesta de valor</div>
+    <div class="section-title">¿Por qué elegirnos?</div>
+    <div class="section-sub">Lo que ningún competidor ofrece de manera integrada en Chile</div>
+    <div class="features-grid">
+      <div class="feat-card"><div class="feat-icon"><i class="ti ti-clipboard-check"></i></div><h3>Certificación de 150 puntos</h3><p>Revisión técnica independiente realizada por mecánicos certificados sin vínculo comercial con el vendedor.</p></div>
+      <div class="feat-card"><div class="feat-icon"><i class="ti ti-history"></i></div><h3>Historial vehicular completo</h3><p>Accede al historial real del vehículo: siniestros, kilometraje verificado y dueños anteriores.</p></div>
+      <div class="feat-card"><div class="feat-icon"><i class="ti ti-shield"></i></div><h3>Garantía 3 meses / 5.000 km</h3><p>La única concesionaria digital de usados en Chile que te respalda post-compra sin letra chica.</p></div>
+      <div class="feat-card"><div class="feat-icon"><i class="ti ti-360"></i></div><h3>Tour virtual 360°</h3><p>Recorre el vehículo desde tu casa con fotografías de alta resolución y video detallado del estado real.</p></div>
+      <div class="feat-card"><div class="feat-icon"><i class="ti ti-brand-whatsapp"></i></div><h3>Atención en menos de 2h</h3><p>WhatsApp Business activo con respuesta garantizada, videollamadas y soporte en todo el proceso.</p></div>
+      <div class="feat-card"><div class="feat-icon"><i class="ti ti-credit-card"></i></div><h3>Financiamiento directo</h3><p>Gestiona tu crédito con bancos asociados directamente desde la plataforma, sin salir del proceso.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESO -->
+<div class="bg-white" style="padding:4rem 0">
+  <div class="section" style="padding:0 2rem">
+    <div class="section-label">Simple y 100% digital</div>
+    <div class="section-title">¿Cómo comprar en AutoConfianza?</div>
+    <div class="section-sub">De la búsqueda a la firma del contrato, todo online</div>
+    <div class="steps-grid">
+      <div class="step"><div class="step-num">1</div><h3>Busca y filtra</h3><p>Explora el catálogo con toda la información visible desde el primer momento.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Revisa el informe</h3><p>Accede al informe técnico de 150 puntos e historial completo del vehículo.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Tour virtual</h3><p>Visita el auto en 360° o coordina una prueba de manejo presencial en Santiago.</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Financia y firma</h3><p>Gestiona tu financiamiento y firma el contrato de forma 100% digital y trazable.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIOS -->
+<div class="bg-gray" style="padding:4rem 0">
+  <div class="section" style="padding:0 2rem">
+    <div class="section-label">Lo que dicen nuestros clientes</div>
+    <div class="section-title">Testimonios reales</div>
+    <div class="section-sub">+20 reseñas verificadas en Google My Business</div>
+    <div class="test-grid">
+      <div class="test-card"><div class="stars">★★★★★</div><p>"Por fin una concesionaria que te muestra todo antes de llamar. El informe técnico es increíble, compré con total tranquilidad."</p><div class="t-author"><div class="avatar">MG</div><div><div class="t-name">Martina González</div><div class="t-sub">Primer auto · Santiago</div></div></div></div>
+      <div class="test-card"><div class="stars">★★★★★</div><p>"Llevo 3 autos usados comprados y siempre tuve problemas. Con AutoConfianza el proceso fue transparente y la garantía funcionó de verdad."</p><div class="t-author"><div class="avatar">RP</div><div><div class="t-name">Rodrigo Pérez</div><div class="t-sub">Recompra · Las Condes</div></div></div></div>
+      <div class="test-card"><div class="stars">★★★★★</div><p>"Hice todo desde el celular, hasta el financiamiento. Me respondieron por WhatsApp en menos de una hora. Increíble experiencia."</p><div class="t-author"><div class="avatar">CF</div><div><div class="t-name">Camila Fuentes</div><div class="t-sub">Primera compradora · Providencia</div></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="section-label" style="color:rgba(255,255,255,0.6)">Empieza hoy</div>
+  <h2>¿Listo para comprar sin preocupaciones?</h2>
+  <p>Encuentra tu próximo auto con garantía real, información completa y atención personalizada.</p>
+  <div class="cta-btns">
+    <button class="btn-white"><i class="ti ti-car"></i> Ver catálogo</button>
+    <button class="btn-outline-white"><i class="ti ti-brand-whatsapp"></i> Hablar por WhatsApp</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="#">Inicio</a><a href="#">Vehículos</a><a href="#">Certificación</a><a href="#">Garantía</a><a href="#">Contacto</a><a href="#">Instagram</a>
+  </div>
+  <p>© 2026 AutoConfianza · Santiago, Chile · autoconfianza.cl</p>
+  <p>Todos los vehículos cuentan con informe técnico de 150 puntos y garantía de 3 meses o 5.000 km.</p>
+</footer>
+
+<!-- WHATSAPP -->
+<button class="wapp-btn" title="Contactar por WhatsApp" onclick="window.open('https://wa.me/56900000000','_blank')">
+  <i class="ti ti-brand-whatsapp"></i>
+</button>
+
+</body>
+</html>
